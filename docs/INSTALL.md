@@ -10,6 +10,7 @@ Copiez le script Python dans `/usr/local/bin/` ou un autre dossier adapté :
 sudo cp src/sync_manager.py /usr/local/bin/
 sudo cp src/datetime_util.py /usr/local/bin/
 sudo cp src/logging_config.py /usr/local/bin/
+sudo cp src/sync_task.py /usr/local/bin/
 sudo chmod +x /usr/local/bin/sync_manager.py
 ```
 

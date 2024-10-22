@@ -1,10 +1,13 @@
 import configparser
+import multiprocessing
 import os
-from time import sleep
 import signal
 import sys
+from time import sleep
+
 from datetime_util import check_and_sync_time
 from logging_config import setup_logging
+from sync_task import run_sync_task
 
 # Obtenir le logger configuré
 logger = setup_logging()
@@ -29,7 +32,17 @@ def run():
 def main():
     try:
         logger.info("Démarrage du gestionnaire de synchronisation")
-        run()
+
+        # Démarrer le processus pour la tâche de synchronisation
+        sync_process = multiprocessing.Process(target=run_sync_task)
+        sync_process.start()
+
+        # Le processus principal peut continuer à faire d'autres choses ici
+        # Par exemple, surveiller les signaux ou d'autres tâches.
+
+        sync_process.join()  # Attendre la fin du processus enfant si nécessaire
+    except Exception as e:
+        logger.error("Erreur dans le processus principal: %s", e)
     finally:
         logger.info("Arrêt du gestionnaire de synchronisation")
 
