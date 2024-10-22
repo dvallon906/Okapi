@@ -1,4 +1,11 @@
-from distutils.core import setup
+from setuptools import setup, find_packages
+
+
+# Lire requirements.txt
+def read_requirements():
+    with open('requirements.txt') as f:
+        return [line.strip() for line in f if line.strip() and not line.startswith('#')]
+
 
 setup(
     name='Okapi',
@@ -22,13 +29,9 @@ setup(
     long_description_content_type='text/markdown',
     author='Daniel VALLON',  # Auteur du projet
     author_email='d.vallon@icloud.com',  # E-mail de l'auteur
-    url='https://github.com/votre-utilisateur/my_project',  # URL du projet (GitHub, etc.)
+    url='https://github.com/dvallon906/Okapi',  # URL du projet (GitHub, etc.)
     packages=find_packages(),  # Trouver et inclure tous les paquets Python du répertoire
-    install_requires=[
-        'requests',  # Liste des dépendances
-        'flask',
-        'numpy'
-    ],
+    install_requires=read_requirements(),  # Utiliser la fonction pour inclure les dépendances
     classifiers=[
         'Programming Language :: Python :: 3',
         'License :: OSI Approved :: MIT License',
