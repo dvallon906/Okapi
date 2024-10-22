@@ -3,7 +3,10 @@
 <plist version="1.0">
 <dict>
     <key>Label</key>
-    <string>com.okapi.sync_manager_service</string>
+    <string>ch.okapi.sync_manager_service</string>
+
+    <key>WorkingDirectory</key>
+    <string>/usr/local/bin</string>
 
     <key>ProgramArguments</key>
     <array>
@@ -15,12 +18,13 @@
     <true/>
 
     <key>StandardOutPath</key>
-    <string>/tmp/sync_manager_service.log</string>
+    <string>/tmp/okapi/sync_manager_service.log</string>
 
     <key>StandardErrorPath</key>
-    <string>/tmp/sync_manager_service.err</string>
+    <string>/tmp/okapi/sync_manager_service.err</string>
 
     <key>KeepAlive</key>
     <true/>
 </dict>
 </plist>
+

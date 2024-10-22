@@ -24,16 +24,28 @@ Copiez le fichier sync_manager_service.plist dans `/Library/LaunchDaemons/`
 sudo cp services/sync_manager_service.plist /Library/LaunchDaemons/
 sudo chmod +x /usr/local/bin/sync_manager.py
 ```
-
-2.1 Démarer le service
+2.1 Préparer le lancement du service
 ```bash
-launchctl start com.monscript.sync_manager_service
+sudo launchctl load /Library/LaunchDaemons/sync_manager_service.plist
 ```
 
-2.2 Stoper le service
+2.2 Démarer le service
+```bash
+sudo launchctl start ch.okapi.sync_manager_service 
+```
+
+option Stoper le service
 ```bash
 sudo launchctl unload /Library/LaunchDaemons/sync_manager_service.plist
 ```
+
+2.3 Vérifier que le servide est bien lancé
+```bash
+sudo launchctl list | grep ch.okapi.sync_manager_service
+```
+la réponce soit ressemblé à : <2670    0       ch.okapi.sync_manager_service>
+
+
 
 
 
