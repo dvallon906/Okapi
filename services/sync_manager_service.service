@@ -1,0 +1,17 @@
+[Unit]
+Description=Synchonisation Manager Okapy
+After=network.target
+
+[Service]
+ExecStart=/usr/bin/python3 /usr/local/bin/sync_manager.py
+Restart=always
+User=nobody
+Group=nogroup
+WorkingDirectory=/usr/local/bin/
+StandardOutput=syslog
+StandardError=syslog
+SyslogIdentifier=sync_manager_service
+Environment=PYTHONUNBUFFERED=1
+
+[Install]
+WantedBy=multi-user.target
