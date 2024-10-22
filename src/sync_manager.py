@@ -4,7 +4,7 @@ from time import sleep
 import signal
 import sys
 from datetime_util import check_and_sync_time
-from src.logging_config import setup_logging
+from logging_config import setup_logging
 
 # Obtenir le logger configuré
 logger = setup_logging()

@@ -13,7 +13,8 @@ def setup_logging(log_file='/opt/okapi/logs/okapi.log'):
         file_handler = logging.handlers.RotatingFileHandler(
             log_file, maxBytes=10*1024*1024, backupCount=5  # Rotation de fichier de log
         )
-        file_handler.setLevel(logging.INFO)  # Niveau de log pour le fichier
+        #file_handler.setLevel(logging.INFO)  # Niveau de log pour le fichier
+        file_handler.setLevel(logging.DEBUG)  # Niveau de log pour le fichier
         file_formatter = logging.Formatter('%(asctime)s %(levelname)s %(message)s')
         file_handler.setFormatter(file_formatter)
 

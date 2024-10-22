@@ -2,7 +2,7 @@ import datetime
 import os
 from time import ctime, time
 import ntplib
-from src.logging_config import setup_logging
+from logging_config import setup_logging
 
 # Obtenir le logger configuré
 logger = setup_logging()
