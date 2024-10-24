@@ -4,14 +4,13 @@ import os
 import signal
 import sys
 from time import sleep
-from datetime import datetime
 
 
 from datetime_util import check_and_sync_time
 from logging_config import setup_logging
 from sync_task import run_sync_task
 
-from __init__ import __version__
+from version import __version__ as v
 
 
 # Obtenir le logger configuré
@@ -36,7 +35,7 @@ def run():
 
 def main():
     try:
-        logger.info(f"Démarrage du gestionnaire de synchronisation version {__version__}")
+        logger.info(f"Démarrage du gestionnaire de synchronisation version {v}")
 
         # Démarrer le processus pour la tâche de synchronisation
         sync_process = multiprocessing.Process(target=run_sync_task)

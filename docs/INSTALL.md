@@ -39,7 +39,7 @@ sudo launchctl load /Library/LaunchDaemons/sync_manager_service.plist
 
 2.2 Démarer le service
 ```bash
-sudo launchctl start ch.okapi.sync_manager_service 
+sudo launchctl start ch.okapi.sync_manager
 ```
 
 option Stoper le service
@@ -49,7 +49,7 @@ sudo launchctl unload /Library/LaunchDaemons/sync_manager_service.plist
 
 2.3 Vérifier que le servide est bien lancé
 ```bash
-sudo launchctl list | grep ch.okapi.sync_manager_service
+sudo launchctl list | grep ch.okapi.sync_manager
 ```
 la réponce soit ressemblé à : <2670    0       ch.okapi.sync_manager_service>
 
