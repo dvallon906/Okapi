@@ -16,17 +16,6 @@ def get_ntp_time():
         # Le timestamp renvoyé par le serveur NTP
         timestamp = response.tx_time
 
-        # Convertir le timestamp en objet datetime
-        dt_object = datetime.datetime.fromtimestamp(timestamp)
-
-        # Formater la date et l'heure au format français : jour/mois/année heure:minute:seconde avec jours, mois et années sur 2 chiffres
-        formatted_time = dt_object.strftime("%d/%m/%y %H:%M:%S")
-
-        # Si la commande réussit, écrire dans la sortie standard (redirigée dans le fichier log)
-
-        logger.debug(f"{formatted_time} ok")
-
-
         return timestamp
     except Exception as e:
 
@@ -53,6 +42,6 @@ def check_and_sync_time():
             update_system_time(ntp_time)
             return ntp_time  # Retourner l'heure validée pour stockage
         else:
-            logger.debug("L'heure système est correcte.")
+            logger.debug(f"L'heure système est correcte {datetime.datetime.fromtimestamp(ntp_time)}.")
             return ntp_time  # Retourner l'heure validée
     return None

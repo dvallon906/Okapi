@@ -4,14 +4,16 @@ import os
 
 def setup_logging(log_file='/opt/okapi/logs/okapi.log'):
     logger = logging.getLogger('okapi')
-    logger.debug(f"Le fichier de log est {log_file}")
+
     # Ne configure le logger que s'il n'est pas déjà configuré
     if not logger.hasHandlers():
+
         os.makedirs(os.path.dirname(log_file), exist_ok=True)
 
         # Création du gestionnaire pour le fichier avec un niveau de log "INFO"
         file_handler = logging.handlers.RotatingFileHandler(
-            log_file, maxBytes=10*1024*1024, backupCount=5  # Rotation de fichier de log
+            log_file, maxBytes=1*1024*1024, backupCount=5  # Rotation de fichier de log
+            # log_file, maxBytes=1024, backupCount=5  # Rotation de fichier de log
         )
         #file_handler.setLevel(logging.INFO)  # Niveau de log pour le fichier
         file_handler.setLevel(logging.DEBUG)  # Niveau de log pour le fichier
@@ -32,4 +34,5 @@ def setup_logging(log_file='/opt/okapi/logs/okapi.log'):
         logger.addHandler(file_handler)
         logger.addHandler(console_handler)
 
+        logger.debug(f"Le fichier de log est {log_file}")
     return logger

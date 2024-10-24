@@ -4,10 +4,15 @@ import os
 import signal
 import sys
 from time import sleep
+from datetime import datetime
+
 
 from datetime_util import check_and_sync_time
 from logging_config import setup_logging
 from sync_task import run_sync_task
+
+from __init__ import __version__
+
 
 # Obtenir le logger configuré
 logger = setup_logging()
@@ -16,7 +21,7 @@ data_file = "/opt/okapi/datas/last_time_certified.txt"
 os.makedirs(os.path.dirname(data_file), exist_ok=True)
 
 def run():
-        logger.info("Opération de synchronisation démarrée")
+        logger.info("Opération de synchronisation démarrée version")
         try:
             while True:
                 ntp_time = check_and_sync_time()
@@ -31,7 +36,7 @@ def run():
 
 def main():
     try:
-        logger.info("Démarrage du gestionnaire de synchronisation")
+        logger.info(f"Démarrage du gestionnaire de synchronisation version {__version__}")
 
         # Démarrer le processus pour la tâche de synchronisation
         sync_process = multiprocessing.Process(target=run_sync_task)
