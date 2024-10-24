@@ -2,7 +2,7 @@ from setuptools import setup, find_packages
 
 setup(
     name='okapi',
-    version="0.2.1",  # Bump2version mettra à jour cette valeur
+    version="0.2.2",  # Bump2version mettra à jour cette valeur
     description='Un outil pour synchroniser les données entre Raspberry Pi',
     long_description=open('README.md').read(),
     long_description_content_type='text/markdown',
