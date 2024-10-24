@@ -35,8 +35,9 @@ main_menu() {
         echo "Q) Quitter"
         echo "=============================="
         echo -n "Choisissez une option : "
-        read -n1 choice  # Lire un seul caractère sans attendre "Enter"
-        echo  # Nouvelle ligne après la lecture de la touche
+
+        # Utilisation de 'read' classique pour attendre l'entrée utilisateur
+        read choice
 
         case $choice in
             1)
