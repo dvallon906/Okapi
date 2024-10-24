@@ -10,7 +10,7 @@ def setup_logging():
     Returns:
         logging.Logger: Le logger configuré.
     """
-    log_file = os.path.expanduser("~/logs/okapi.log")
+    log_file = ("/opt/okapi/logs/okapi.log")
 
     logger = logging.getLogger('okapi')
 
