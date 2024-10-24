@@ -6,22 +6,22 @@
     <string>ch.okapi.sync_manager_service</string>
 
     <key>WorkingDirectory</key>
-    <string>/usr/local/bin</string>
+    <string>/opt/okapi/deamons/sync_manager</string>
 
     <key>ProgramArguments</key>
     <array>
         <string>/usr/local/bin/python3</string>
-        <string>/usr/local/bin/sync_manager.py</string>
+        <string>/opt/okapi/deamons/sync_manager/sync_manager.pysync_manager.py</string>
     </array>
 
     <key>RunAtLoad</key>
     <true/>
 
     <key>StandardOutPath</key>
-    <string>/tmp/okapi/sync_manager_service.log</string>
+    <string>/opt/okapi/logs/sync_manager_service.log</string>
 
     <key>StandardErrorPath</key>
-    <string>/tmp/okapi/sync_manager_service.err</string>
+    <string>/opt/okapi/logs/sync_manager_service.err</string>
 
     <key>KeepAlive</key>
     <true/>
