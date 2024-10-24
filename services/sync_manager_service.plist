@@ -12,7 +12,7 @@
 
     <array>
         <string>/usr/local/bin/python3</string>
-        <string>/opt/okapi/deamons/ch.okapi.sync_manager/src/pysync_manager.py</string>
+        <string>/opt/okapi/deamons/ch.okapi.sync_manager/sync_manager/sync_manager.py</string>
     </array>
 
     <key>RunAtLoad</key>

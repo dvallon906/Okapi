@@ -2,5 +2,8 @@
 git clone https://github.com/dvallon906/ch.okapi.sync_manager.git
 sudo launchctl unload /Library/LaunchDaemons/sync_manager_service.plist
 sudo cp /opt/okapi/deamons/ch.okapi.sync_manager/services/sync_manager_service.plist /Library/LaunchDaemons/
-sudo chmod +x /opt/okapi/deamons/ch.okapi.sync_manager/src/sync_manager.py
+sudo chmod +x /opt/okapi/deamons/ch.okapi.sync_manager/sync_manager/sync_manager.py
+sudo launchctl load /Library/LaunchDaemons/sync_manager_service.plist
 sudo launchctl start ch.okapi.sync_manager_service
+
+sudo launchctl list | grep ch.okapi.sync_manager
