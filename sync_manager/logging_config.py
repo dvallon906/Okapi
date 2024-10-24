@@ -4,16 +4,6 @@ import os
 
 def setup_logging():
     log_file = "/opt/okapi/logs/okapi.log"
-    log_dir = os.path.dirname(log_file)
-
-    # Assurez-vous que le répertoire de logs existe
-    if not os.path.exists(log_dir):
-        os.makedirs(log_dir)
-
-    # Assurez-vous que le fichier de log existe (initialisez-le si nécessaire)
-    if not os.path.isfile(log_file):
-        with open(log_file, 'w'):
-            pass  # Création du fichier vide
 
     logger = logging.getLogger('okapi')
 
