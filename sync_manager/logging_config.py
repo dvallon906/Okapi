@@ -1,40 +1,64 @@
-import logging
-import logging.handlers
+import datetime
 import os
+from time import ctime, time
+import ntplib
+from logging_config import setup_logging
 
-def setup_logging():
-    log_file = "/opt/okapi/logs/okapi.log"
+# Obtenir le logger configuré
+logger = setup_logging()
 
-    logger = logging.getLogger('okapi')
 
-    # Ne configure le logger que s'il n'est pas déjà configuré
-    if not logger.hasHandlers():
+def get_ntp_time():
+    """
+    Récupère l'heure depuis un serveur NTP.
 
-        os.makedirs(os.path.dirname(log_file), exist_ok=True)
+    Returns:
+        float: Le timestamp renvoyé par le serveur NTP ou None en cas d'erreur.
+    """
+    try:
+        client = ntplib.NTPClient()
+        response = client.request('ch.pool.ntp.org.')  # Utiliser un serveur NTP
 
-        # Création du gestionnaire pour le fichier avec un niveau de log "INFO"
-        file_handler = logging.handlers.RotatingFileHandler(
-            log_file, maxBytes=1*1024*1024, backupCount=5  # Rotation de fichier de log
-            # log_file, maxBytes=1024, backupCount=5  # Rotation de fichier de log
-        )
-        #file_handler.setLevel(logging.INFO)  # Niveau de log pour le fichier
-        file_handler.setLevel(logging.DEBUG)  # Niveau de log pour le fichier
-        file_formatter = logging.Formatter('%(asctime)s %(levelname)s %(message)s')
-        file_handler.setFormatter(file_formatter)
+        # Le timestamp renvoyé par le serveur NTP
+        timestamp = response.tx_time
 
-        # Création du gestionnaire pour la console avec un niveau de log "DEBUG"
-        console_handler = logging.StreamHandler()
-        console_handler.setLevel(logging.DEBUG)  # Niveau de log pour la console
-        console_formatter = logging.Formatter('%(asctime)s %(levelname)s %(message)s')
-        console_handler.setFormatter(console_formatter)
+        return timestamp
+    except Exception as e:
+        # Si la commande échoue, écrire dans la sortie d'erreur (redirigée dans le fichier d'erreur)
+        logger.error(f"Erreur lors de la synchronisation NTP: {e}\n")
+        return None
 
-        # Configuration du logger principal
-        logger = logging.getLogger('okapi')  # Nom du logger
-        logger.setLevel(logging.DEBUG)  # Niveau minimum de log global
 
-        # Ajout des gestionnaires au logger
-        logger.addHandler(file_handler)
-        logger.addHandler(console_handler)
+def update_system_time(ntp_time):
+    """
+    Met à jour l'heure du système avec l'heure fournie par le serveur NTP.
 
-        logger.debug(f"Le fichier de log est {log_file}")
-    return logger
+    Args:
+        ntp_time (float): Le timestamp du serveur NTP.
+    """
+    # Convertir le temps en format acceptable par 'date' sous Linux
+    os.system(f'sudo date -s @{ntp_time}')
+    logger.info(f"Heure système mise à jour: {ctime(ntp_time)}")
+
+
+def check_and_sync_time():
+    """
+    Vérifie la différence entre l'heure locale et l'heure du serveur NTP
+    et met à jour l'heure du système si nécessaire.
+
+    Returns:
+        float: Le timestamp validé ou None en cas d'erreur.
+    """
+    ntp_time = get_ntp_time()
+    if ntp_time:
+        local_time = time()
+        time_diff = abs(ntp_time - local_time)
+
+        if time_diff > 1:  # Si la différence dépasse 1 seconde
+            logger.info(f"La différence de temps est de {time_diff} secondes, mise à jour nécessaire.")
+            update_system_time(ntp_time)
+            return ntp_time  # Retourner l'heure validée pour stockage
+        else:
+            logger.debug(f"L'heure système est correcte {datetime.datetime.fromtimestamp(ntp_time)}.")
+            return ntp_time  # Retourner l'heure validée
+    return None
