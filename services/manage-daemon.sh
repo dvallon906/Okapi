@@ -10,8 +10,6 @@ execute_command() {
     local command=$2
 
     echo "\n--> $description"
-    echo "Appuyez sur Enter pour exécuter la commande."
-    read  # Attendre que l'utilisateur appuie sur Enter
 
     eval $command
 
@@ -37,7 +35,8 @@ main_menu() {
         echo "Q) Quitter"
         echo "=============================="
         echo -n "Choisissez une option : "
-        read choice
+        read -n1 choice  # Lire un seul caractère sans attendre "Enter"
+        echo  # Nouvelle ligne après la lecture de la touche
 
         case $choice in
             1)
