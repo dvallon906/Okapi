@@ -18,12 +18,6 @@
     <key>RunAtLoad</key>
     <true/>
 
-    <key>StandardOutPath</key>
-    <string>/opt/okapi/logs/sync_manager_service.log</string>
-
-    <key>StandardErrorPath</key>
-    <string>/opt/okapi/logs/sync_manager_service.err</string>
-
     <key>KeepAlive</key>
     <true/>
 </dict>
