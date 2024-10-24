@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="WebServers">
+    <option name="servers">
+      <webServer id="afeb2f81-acb6-4e46-a581-0e37c1ac14a3" name="raspdva">
+        <fileTransfer accessType="SFTP" host="raspdva" port="22" sshConfigId="a80dec00-3a66-4867-af7e-8c42815b34c4" sshConfig="dva@raspdva:22 password">
+          <advancedOptions>
+            <advancedOptions dataProtectionLevel="Private" keepAliveTimeout="0" passiveMode="true" shareSSLContext="true" />
+          </advancedOptions>
+        </fileTransfer>
+      </webServer>
+    </option>
+  </component>
+</project>

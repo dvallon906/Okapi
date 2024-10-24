@@ -1,0 +1,7 @@
+[bumpversion]
+current_version = 0.0.3
+commit = True       # Créer automatiquement un commit lors de la mise à jour
+tag = True          # Ajouter un tag Git correspondant à la version
+
+[bumpversion:file:setup.py]  # Indiquer où la version est présente
+[bumpversion:file:mon_projet/__init__.py]  # Exemple d'endroit où la version est aussi définie

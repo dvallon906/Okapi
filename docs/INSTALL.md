@@ -20,6 +20,12 @@ Copiez le fichier sync_manager_service.service dans `/etc/systemd/system/`
 ```bash
 sudo cp services/sync_manager_service.service /etc/systemd/system/
 ```
+Voir les dix derniers logs 
+```bash
+tail /opt/okapi/logs/okapi.log
+```
+
+
 ### 2. Pour MacOS
 Copiez le fichier sync_manager_service.plist dans `/Library/LaunchDaemons/`
 ```bash
